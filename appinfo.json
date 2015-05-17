@@ -1,0 +1,26 @@
+{
+    "appKeys": {
+        "KEY_CONDITIONS": 1,
+        "KEY_TEMP": 0
+    },
+    "capabilities": [
+        "location"
+    ],
+    "companyName": "katemaroney92@gmail.com",
+    "longName": "WeatherAlert",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "WeatherAlert",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "1a848a90-4460-4543-8aee-694ebec1c242",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
