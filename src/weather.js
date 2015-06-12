@@ -1,3 +1,5 @@
+var Timeline = require('pebble-api');
+
 var xhrRequest = function (url, type, callback) {
   var xhr = new XMLHttpRequest();
   xhr.onload = function(){
@@ -28,7 +30,37 @@ function locationSuccess(pos){
       'KEY_TEMP' : data[0].temperature,
       'KEY_CONDITONS': data[0].conditions
     };
-    
+    var timeline = new Timeline();
+    var pin = new Timeline.Pin({
+        id: 'test-pin-'+hour,
+        time: date,
+        layout: new Timeline.Pin.Layout({
+            type: "weatherPin",
+            title: data[0].conditions,
+            subtitle: data[0].temperature,
+            tinyIcon: "system://images/TIMELINE_SUN",
+            largeIcon: "system://images/TIMELINE_SUN",
+            lastUpdated: data[0]['time']
+        })
+    });
+    var userToken;
+    Pebble.getTimelineToken(
+        function(token) {
+            console.log('Got token!' + token);
+            userToken = token;
+         },
+         function(error) {
+            console.log('Error getting token: ' + error);
+         }
+    );
+    timeline.sendUserPin(usertoken, pin, function(err) {
+        if (err) {
+            return console.error(err);
+         }
+
+         console.log('Pin is successful!');
+    });
+
     Pebble.sendAppMessage(dictionary, function(e){
       console.log('Weather info sent successfully');
     }, function(e) {
